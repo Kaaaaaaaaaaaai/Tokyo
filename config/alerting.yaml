@@ -1,0 +1,5 @@
+enabled: false
+webhook_kind: null
+webhook_url_env: "WEBHOOK_ALERT_URL"
+local_json_logs: true
+

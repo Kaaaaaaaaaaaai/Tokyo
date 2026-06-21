@@ -1,0 +1,17 @@
+{
+  "strategy_id": "mean_reversion_jpy",
+  "account_id": "paper_main",
+  "trading_mode": "paper",
+  "symbol_id": "01020304",
+  "side": "buy",
+  "order_type": "market",
+  "quantity": "1000",
+  "limit_price": null,
+  "stop_price": null,
+  "time_in_force": "day",
+  "client_order_id": "mean_reversion_jpy-example-000001",
+  "metadata": {
+    "reason": "example"
+  }
+}
+

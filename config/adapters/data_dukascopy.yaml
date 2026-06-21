@@ -1,0 +1,15 @@
+adapter_id: "dukascopy_fx_data"
+adapter_type: "data"
+version: "0.1.0"
+provider: "dukascopy"
+supports_live: false
+supports_backfill: true
+supports_ticks: true
+supports_bars: true
+supports_order_book: false
+supports_bid_ask: true
+supports_datasets: true
+enabled: false
+symbols:
+  - "USDJPY"
+

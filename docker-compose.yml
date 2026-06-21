@@ -1,0 +1,99 @@
+services:
+  postgres:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-tokyo}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in .env}
+      POSTGRES_DB: ${POSTGRES_DB:-tokyo}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U \"$${POSTGRES_USER}\" -d \"$${POSTGRES_DB}\""]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  redis:
+    image: redis:7
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  tokyo-api:
+    build: .
+    command: uvicorn tokyo.apps.api.main:app --host 0.0.0.0 --port 8000
+    environment:
+      TOKYO_ENV: dev
+      TRADING_MODE: paper
+      DATABASE_URL: postgresql+asyncpg://${POSTGRES_USER:-tokyo}:${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in .env}@postgres:5432/${POSTGRES_DB:-tokyo}
+      REDIS_URL: redis://redis:6379/0
+      EVENT_BUS_BACKEND: redis
+      REDIS_STREAM_MAX_LEN: "50000"
+      LOG_LEVEL: info
+      TOKYO_API_KEY: ${TOKYO_API_KEY:?set TOKYO_API_KEY in .env}
+      KILL_SWITCH_DEFAULT: engaged
+      CONFIG_PATH: /app/config
+      SECRETS_PROVIDER: env
+    ports:
+      - "127.0.0.1:8000:8000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+  tokyo-data-worker:
+    build: .
+    command: python -m tokyo.apps.data_worker.main
+    environment:
+      TOKYO_ENV: dev
+      TRADING_MODE: paper
+      DATABASE_URL: postgresql+asyncpg://${POSTGRES_USER:-tokyo}:${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in .env}@postgres:5432/${POSTGRES_DB:-tokyo}
+      REDIS_URL: redis://redis:6379/0
+      EVENT_BUS_BACKEND: redis
+      REDIS_STREAM_MAX_LEN: "50000"
+      CONFIG_PATH: /app/config
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+  tokyo-execution-worker:
+    build: .
+    command: python -m tokyo.apps.execution_worker.main
+    environment:
+      TOKYO_ENV: dev
+      TRADING_MODE: paper
+      DATABASE_URL: postgresql+asyncpg://${POSTGRES_USER:-tokyo}:${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in .env}@postgres:5432/${POSTGRES_DB:-tokyo}
+      REDIS_URL: redis://redis:6379/0
+      EVENT_BUS_BACKEND: redis
+      REDIS_STREAM_MAX_LEN: "50000"
+      CONFIG_PATH: /app/config
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+  tokyo-supervisor:
+    build: .
+    command: python -m tokyo.apps.supervisor.main
+    environment:
+      TOKYO_ENV: dev
+      TRADING_MODE: paper
+      DATABASE_URL: postgresql+asyncpg://${POSTGRES_USER:-tokyo}:${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in .env}@postgres:5432/${POSTGRES_DB:-tokyo}
+      REDIS_URL: redis://redis:6379/0
+      EVENT_BUS_BACKEND: redis
+      REDIS_STREAM_MAX_LEN: "50000"
+      CONFIG_PATH: /app/config
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+volumes:
+  postgres_data:

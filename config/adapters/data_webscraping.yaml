@@ -1,0 +1,14 @@
+adapter_id: "webscraping_dataset"
+adapter_type: "data"
+version: "0.1.0"
+provider: "allowlisted_web"
+supports_live: false
+supports_backfill: true
+supports_ticks: false
+supports_bars: false
+supports_order_book: false
+supports_bid_ask: false
+supports_datasets: true
+enabled: false
+allowlist: []
+

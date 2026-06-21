@@ -1,0 +1,14 @@
+adapter_id: "ccxt_crypto_data"
+adapter_type: "data"
+version: "0.1.0"
+provider: "ccxt"
+supports_live: false
+supports_backfill: true
+supports_ticks: true
+supports_bars: true
+supports_order_book: false
+supports_bid_ask: true
+enabled: false
+symbols:
+  - "BTC/USDT"
+

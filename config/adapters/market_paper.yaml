@@ -1,0 +1,14 @@
+adapter_id: "paper_sim"
+adapter_type: "market"
+version: "0.1.0"
+provider: "tokyo"
+supports_live: false
+supports_market_orders: true
+supports_limit_orders: true
+supports_replace_order: false
+supports_streaming_executions: false
+slippage: "0"
+commission: "0"
+partial_fills_enabled: false
+rejection_simulation_enabled: false
+

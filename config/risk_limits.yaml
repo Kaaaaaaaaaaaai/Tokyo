@@ -1,0 +1,27 @@
+- limit_id: "global_max_order_notional"
+  scope: "global"
+  scope_id: null
+  limit_type: "max_order_notional"
+  threshold: "1000000"
+  action: "reject"
+  enabled: true
+  metadata:
+    original_default: "1000"
+    note: "Raised for local paper USDJPY example; tune before real deployment."
+- limit_id: "fx_max_order_quantity"
+  scope: "universe"
+  scope_id: "fx"
+  limit_type: "max_fx_order_quantity"
+  threshold: "10000"
+  action: "reject"
+  enabled: true
+  metadata: {}
+- limit_id: "crypto_max_order_notional"
+  scope: "universe"
+  scope_id: "crypto"
+  limit_type: "max_crypto_order_notional"
+  threshold: "1000"
+  action: "reject"
+  enabled: true
+  metadata: {}
+

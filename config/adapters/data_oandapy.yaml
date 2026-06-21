@@ -1,0 +1,13 @@
+adapter_id: "oandapy_fx_data"
+adapter_type: "data"
+version: "0.1.0"
+provider: "oanda"
+supports_live: false
+supports_backfill: false
+supports_ticks: true
+supports_bars: true
+supports_order_book: false
+supports_bid_ask: true
+enabled: false
+requires_credentials: true
+

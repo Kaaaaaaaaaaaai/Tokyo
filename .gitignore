@@ -1,0 +1,36 @@
+# Python-generated files
+.pytest_cache/
+*.bak
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+.ruff_cache/
+
+# Virtual environments
+.venv/
+
+# Local secrets and generated data
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.crt
+*.p12
+*.pfx
+secrets/
+config/local/
+*.sqlite
+*.sqlite3
+*.db
+*.dump
+
+# Internal documents
+docs/
+
+# agent related
+.agents/
+.codex/

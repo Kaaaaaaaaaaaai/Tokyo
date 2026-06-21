@@ -1,0 +1,14 @@
+- account_id: "paper_main"
+  trading_mode: "paper"
+  base_currency: "USD"
+  enabled: true
+  allowed_universes:
+    - "fx"
+    - "crypto"
+  initial_balances:
+    USD: "100000"
+    JPY: "10000000"
+    USDT: "100000"
+  metadata:
+    description: "Default paper account"
+

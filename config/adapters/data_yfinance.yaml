@@ -1,0 +1,13 @@
+adapter_id: "yfinance_data"
+adapter_type: "data"
+version: "0.1.0"
+provider: "yfinance"
+supports_live: false
+supports_backfill: true
+supports_ticks: false
+supports_bars: true
+supports_order_book: false
+supports_bid_ask: false
+enabled: false
+symbols: []
+

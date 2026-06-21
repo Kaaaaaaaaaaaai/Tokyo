@@ -1,0 +1,33 @@
+- symbol_id: "01020304"
+  symbol: "USDJPY"
+  universe: "fx"
+  variant: "spot"
+  asset: "USD"
+  quote_asset: "JPY"
+  unit: "JPY"
+  price_precision: 3
+  quantity_precision: 0
+  min_quantity: "1000"
+  min_notional: null
+  tick_size: "0.001"
+  lot_size: "1000"
+  status: "active"
+  metadata:
+    venue: "paper"
+- symbol_id: "02020304"
+  symbol: "BTCUSDT"
+  universe: "crypto"
+  variant: "spot"
+  asset: "BTC"
+  quote_asset: "USDT"
+  unit: "USDT"
+  price_precision: 2
+  quantity_precision: 6
+  min_quantity: "0.0001"
+  min_notional: "10"
+  tick_size: "0.01"
+  lot_size: "0.0001"
+  status: "active"
+  metadata:
+    venue: "paper"
+

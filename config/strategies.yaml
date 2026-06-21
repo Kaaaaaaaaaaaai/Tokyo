@@ -1,0 +1,17 @@
+- strategy_id: "mean_reversion_jpy"
+  enabled: true
+  allowed_accounts:
+    - "paper_main"
+  allowed_symbols:
+    - "01020304"
+  metadata:
+    description: "Example FX paper strategy"
+- strategy_id: "crypto_breakout"
+  enabled: true
+  allowed_accounts:
+    - "paper_main"
+  allowed_symbols:
+    - "02020304"
+  metadata:
+    description: "Example crypto paper strategy"
+
